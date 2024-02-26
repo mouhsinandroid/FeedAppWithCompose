@@ -1,7 +1,6 @@
 package com.mouhsinbourqaiba.feedapp_withcompose.ui.theme
 
 
-import androidx.compose.material.Typography
 import androidx.compose.ui.unit.sp
 
 import androidx.compose.ui.text.TextStyle
@@ -9,7 +8,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import com.mouhsinbourqaiba.feedapp_withcompose.R
-
+import androidx.compose.material3.Typography
 
 
 val Roboto = FontFamily(
@@ -22,30 +21,35 @@ val NotoSerif = FontFamily(
     Font(R.font.notoserif_variable, FontWeight.Bold)
 )
 
-val AppTypography = Typography(
-    defaultFontFamily = Roboto,
-    h1 = TextStyle(
-        fontFamily = NotoSerif,
-        fontWeight = FontWeight.Bold,
-        fontSize = 30.sp
-    ),
-    h2 = TextStyle(
-        fontFamily = NotoSerif,
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp
-    ),
-    // Since h2 was causing issues, ensure you're using an existing parameter. If h2 is not recognized, it could be due to version issues or a typo. Here, we proceed without it or ensure it's correctly defined according to your library version.
-    body1 = TextStyle(
+val Typography = Typography(
+    displaySmall = TextStyle(
+        fontSize = 24.sp,
         fontFamily = Roboto,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        lineHeight = 36.sp,
     ),
-    button = TextStyle(
+    displayMedium = TextStyle(
+        fontSize = 32.sp,
         fontFamily = Roboto,
-        fontWeight = FontWeight.Bold,
-        fontSize = 14.sp
-    )
-    // Add other styles as needed
+        fontWeight = FontWeight.Normal,
+        lineHeight = 48.sp,
+    ),
+    bodySmall = TextStyle(
+        fontSize = 14.sp,
+        fontFamily = Roboto,
+        fontWeight = FontWeight.Normal,
+        lineHeight = 21.sp,
+    ),
+    bodyMedium = TextStyle(
+        fontSize = 16.sp,
+        fontFamily = Roboto,
+        fontWeight = FontWeight.Normal,
+        lineHeight = 24.sp,
+    ),
+    labelSmall = TextStyle(
+        fontSize = 13.sp,
+        fontFamily = Roboto,
+        fontWeight = FontWeight.Normal,
+        lineHeight = 19.sp,
+    ),
 )
-
-

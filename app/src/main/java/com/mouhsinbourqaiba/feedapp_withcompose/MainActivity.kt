@@ -1,6 +1,7 @@
 package com.mouhsinbourqaiba.feedapp_withcompose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -12,15 +13,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.lifecycleScope
+import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.AppEntryUsesCases
 import com.mouhsinbourqaiba.feedapp_withcompose.presentation.onboarding.OnBoardingScreen
 import com.mouhsinbourqaiba.feedapp_withcompose.ui.theme.FeedAppWithComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var appEntryUsesCases: AppEntryUsesCases
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen()
+        lifecycleScope.launch {
+            appEntryUsesCases.readAppEntryUseCase().collect{data ->
+                Log.d("Test -- ", data.toString())
+
+            }
+        }
         setContent {
             FeedAppWithComposeTheme {
 

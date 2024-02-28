@@ -13,13 +13,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.AppEntryUsesCases
 import com.mouhsinbourqaiba.feedapp_withcompose.presentation.onboarding.OnBoardingScreen
+import com.mouhsinbourqaiba.feedapp_withcompose.presentation.viewmodels.onboarding.OnBoardingViewModel
 import com.mouhsinbourqaiba.feedapp_withcompose.ui.theme.FeedAppWithComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -32,16 +35,16 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen()
         lifecycleScope.launch {
-            appEntryUsesCases.readAppEntryUseCase().collect{data ->
-                Log.d("Test -- ", data.toString())
-
+            appEntryUsesCases.readAppEntryUseCase().collect {
+                Log.d("appEntry", it.toString())
             }
         }
         setContent {
             FeedAppWithComposeTheme {
 
                 Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
-                    OnBoardingScreen()
+                    val viewModel: OnBoardingViewModel = hiltViewModel()
+                    OnBoardingScreen(viewModel::onEvent)
                 }
             }
         }

@@ -1,9 +1,9 @@
 package com.mouhsinbourqaiba.feedapp_withcompose
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.MaterialTheme
@@ -13,38 +13,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.lifecycleScope
-import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.AppEntryUsesCases
-import com.mouhsinbourqaiba.feedapp_withcompose.presentation.onboarding.OnBoardingScreen
-import com.mouhsinbourqaiba.feedapp_withcompose.presentation.viewmodels.onboarding.OnBoardingViewModel
+import com.mouhsinbourqaiba.feedapp_withcompose.presentation.navgraph.NavGraph
+import com.mouhsinbourqaiba.feedapp_withcompose.presentation.viewmodels.main.MainViewModel
 import com.mouhsinbourqaiba.feedapp_withcompose.ui.theme.FeedAppWithComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import javax.inject.Inject
-
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var appEntryUsesCases: AppEntryUsesCases
-
+    val viewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        installSplashScreen()
-        lifecycleScope.launch {
-            appEntryUsesCases.readAppEntryUseCase().collect {
-                Log.d("appEntry", it.toString())
+        installSplashScreen().apply {
+            setKeepOnScreenCondition{
+                viewModel.splashCondition
             }
         }
+
         setContent {
             FeedAppWithComposeTheme {
 
                 Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
-                    val viewModel: OnBoardingViewModel = hiltViewModel()
-                    OnBoardingScreen(viewModel::onEvent)
+                    val startDestination = viewModel.startDestination
+                    NavGraph(startDestination = startDestination)
                 }
             }
         }

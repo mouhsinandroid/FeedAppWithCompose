@@ -3,9 +3,9 @@ package com.mouhsinbourqaiba.feedapp_withcompose.di
 import android.app.Application
 import com.mouhsinbourqaiba.feedapp_withcompose.data.manager.LocalUserManagerImpl
 import com.mouhsinbourqaiba.feedapp_withcompose.domain.manager.LocalUserManager
-import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.AppEntryUsesCases
-import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.ReadAppEntryUseCase
-import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.SaveAppEntryUseCase
+import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.app_entry.AppEntryUsesCases
+import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.app_entry.ReadAppEntryUseCase
+import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.app_entry.SaveAppEntryUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

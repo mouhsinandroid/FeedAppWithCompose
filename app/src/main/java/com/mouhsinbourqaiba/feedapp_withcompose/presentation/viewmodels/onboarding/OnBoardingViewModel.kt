@@ -2,7 +2,7 @@ package com.mouhsinbourqaiba.feedapp_withcompose.presentation.viewmodels.onboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.AppEntryUsesCases
+import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.app_entry.AppEntryUsesCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

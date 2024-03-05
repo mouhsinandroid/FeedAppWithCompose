@@ -1,4 +1,4 @@
-package com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases
+package com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.app_entry
 
 import com.mouhsinbourqaiba.feedapp_withcompose.domain.manager.LocalUserManager
 import kotlinx.coroutines.flow.Flow

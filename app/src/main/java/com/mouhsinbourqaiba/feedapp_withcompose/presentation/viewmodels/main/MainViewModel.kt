@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.AppEntryUsesCases
+import com.mouhsinbourqaiba.feedapp_withcompose.domain.usecases.app_entry.AppEntryUsesCases
 import com.mouhsinbourqaiba.feedapp_withcompose.presentation.navgraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
